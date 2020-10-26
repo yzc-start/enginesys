@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.HrmMapper">
+
+    <!--添加员工-->
+    <insert id="addHrm" parameterType="com.example.demo.model.Hrmresource">
+        insert into hrmresource (xm,nl,gw,sfzh,yhzh,dh,bz,xb,isdelete) values(#{xm},#{nl},#{gw},#{sfzh},#{yhzh},#{dh},#{bz},#{xb},0)
+    </insert>
+
+
+    <!--删除员工-->
+    <update id="deleteHrm" parameterType="int">
+        update hrmresource set isdelete = 1 where id = #{id}
+    </update>
+
+    <!--修改员工-->
+    <update id="updateHrm" parameterType="com.example.demo.model.Hrmresource">
+        update hrmresource set xm = #{xm},nl = #{nl},gw = #{gw},sfzh = #{sfzh},yhzh = #{yhzh},dh = #{dh},bz = #{bz},xb=#{xb} where id = #{id}
+    </update>
+
+    <!--查询员工-->
+    <select id="selectHrm" resultType="com.example.demo.model.Hrmresource">
+        select * from hrmresource where isdelete = 0
+    </select>
+
+
+</mapper>

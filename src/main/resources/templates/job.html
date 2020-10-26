@@ -16,16 +16,13 @@
 </head>
 <body>
 <table id="dg" class="easyui-datagrid" style="width:100%;height:600px"
-       url="http://localhost:8080/engine/selectEngine",
+       url="http://localhost:8080/job/selectJob",
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
         <th data-options="field:'id',width:100,align:'center'">id</th>
-        <th data-options="field:'gcmc',width:100">工程名称</th>
-        <th data-options="field:'dz',width:100">地址</th>
-        <th data-options="field:'gcys',width:100">工程预算(元)</th>
-        <th data-options="field:'sjcb',width:100">实际成本(元)</th>
+        <th data-options="field:'gw',width:100">岗位</th>
     </tr>
     </thead>
 </table>
@@ -39,36 +36,22 @@
 <div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
     <form id="fm" method="post" novalidate style="margin:0;padding:10px 50px">
         <div style="margin-bottom:10px">
-            <input name="gcmc" class="easyui-textbox" required="true" label="工程名称:" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <input name="dz" class="easyui-textbox" required="true" label="地址:" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <input name="gcys" class="easyui-textbox" required="true" label="工程预算(元):" style="width:100%">
+            <input name="gw" class="easyui-textbox" required="true" label="岗位:" style="width:100%">
         </div>
     </form>
 </div>
 <div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">确认</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
 <div id="dlg1" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons1'">
     <form id="fm1" method="post" novalidate style="margin:0;padding:10px 50px">
         <div style="margin-bottom:10px">
-<!--            <lable>id</lable>-->
             <input name="id" readonly class="easyui-textbox" required="true" label="id:" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="gcmc" class="easyui-textbox" required="true" label="工程名称:" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <input name="dz" class="easyui-textbox" required="true" label="地址:" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-<!--            <lable>工程预算(元):</lable>-->
-            <input name="gcys" class="easyui-textbox" required="true" label="工程预算(元):" style="width:100%;">
+            <input name="gw" class="easyui-textbox" required="true" label="岗位:" style="width:100%">
         </div>
     </form>
 </div>
@@ -84,7 +67,7 @@
     //打开对话框
     function newUser(){
         //打开对话框,清空数据
-        $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加工程');
+        $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加岗位');
         $('#fm').form('clear');
     }
 
@@ -92,7 +75,7 @@
     function editUser(){
         var row = $('#dg').datagrid('getSelected');
         if (row){
-            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','编辑工程');
+            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','编辑岗位');
             $('#fm1').form('load',row);
             // url = 'update_user.php?id='+row.id;
         }
@@ -101,7 +84,7 @@
     //编辑
     function saveUser1(){
         $('#fm1').form('submit',{
-            url: 'http://localhost:8080/engine/updateEngine',
+            url: 'http://localhost:8080/job/updateJob',
             success: function(result){
                 console.log(result)
                 var result = eval('(' + result + ')');   // change the JSON string to javascript object
@@ -121,7 +104,7 @@
     //添加
     function saveUser(){
         $('#fm').form('submit',{
-            url: 'http://localhost:8080/engine/addEngine',
+            url: 'http://localhost:8080/job/addJob',
             success: function(result){
                 var result = eval('(' + result + ')');   // change the JSON string to javascript object
                 if (result.success){
@@ -146,7 +129,7 @@
         if (row){
             $.messager.confirm('删除','请确认是否删除此数据?',function(r){
                 if (r){
-                    $.get('http://localhost:8080/engine/deleteEngine',{id:row.id},function(result){
+                    $.get('http://localhost:8080/job/deleteJob',{id:row.id},function(result){
                         if (result.success){
                             $('#dg').datagrid('reload');    // 获取返回参数，成功则刷新列表
                         } else {

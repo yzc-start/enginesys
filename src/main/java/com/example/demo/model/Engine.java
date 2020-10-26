@@ -4,6 +4,8 @@ public class Engine {
     private Integer id;
     private String gcmc;
     private String dz;
+    private double gcys;
+    private double sjcb;
     private Integer delete;
 
     public Integer getId() {
@@ -30,6 +32,22 @@ public class Engine {
         this.dz = dz;
     }
 
+    public double getGcys() {
+        return gcys;
+    }
+
+    public void setGcys(double gcys) {
+        this.gcys = gcys;
+    }
+
+    public double getSjcb() {
+        return sjcb;
+    }
+
+    public void setSjcb(double sjcb) {
+        this.sjcb = sjcb;
+    }
+
     public Integer getDelete() {
         return delete;
     }
@@ -44,6 +62,8 @@ public class Engine {
                 "id=" + id +
                 ", gcmc='" + gcmc + '\'' +
                 ", dz='" + dz + '\'' +
+                ", gcys=" + gcys +
+                ", sjcb=" + sjcb +
                 ", delete=" + delete +
                 '}';
     }

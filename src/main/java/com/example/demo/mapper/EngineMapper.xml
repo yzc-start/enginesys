@@ -4,7 +4,7 @@
 
 <!--添加工程-->
     <insert id="addEngine" parameterType="com.example.demo.model.Engine">
-        insert into engine (gcmc,dz,isdelete) values(#{gcmc},#{dz},#{delete})
+        insert into engine (gcmc,dz,gcys,sjcb,isdelete) values(#{gcmc},#{dz},#{gcys},#{sjcb},0)
     </insert>
 
 

@@ -2,7 +2,8 @@ package com.example.demo.model;
 
 public class ErrorMessage {
     private Integer code;
-    private String msg;
+    private String errorMsg;
+    private Boolean success;
 
     public Integer getCode() {
         return code;
@@ -12,19 +13,28 @@ public class ErrorMessage {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 
     @Override
     public String toString() {
         return "ErrorMessage{" +
                 "code=" + code +
-                ", msg='" + msg + '\'' +
+                ", errorMsg='" + errorMsg + '\'' +
+                ", success=" + success +
                 '}';
     }
 }

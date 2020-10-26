@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>工程项目</title>
+    <title>系统参数</title>
     <link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
     <script type="text/javascript" src="/easyui/jquery.min.js"></script>
@@ -15,102 +15,152 @@
     </style>
 </head>
 <body>
-
-<table id="dg" class="easyui-datagrid" style="width:100%;height:auto"
-       data-options="
-                iconCls: 'icon-edit',
-                singleSelect: true,
-                toolbar: '#tb',
-                url: 'http://localhost:8080/engine/selectEngine',
-                method: 'get',
-                onClickCell: onClickCell,
-                onEndEdit: onEndEdit,
-                fitColumns:true,
-                striped:true,
-                scrollOnSelect:true
-            "
-       pagination="true" rownumbers="true">
+<table id="dg" class="easyui-datagrid" style="width:100%;height:600px"
+       url="http://localhost:8080/engine/selectEngine",
+       toolbar="#toolbar" pagination="true"
+       rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
-        <th data-options="field:'id',width:40" align="center">id</th>
-        <th data-options="field:'gcmc',width:250,align:'right',editor:{type:'textbox'}" align="left">工程名称</th>
-        <th data-options="field:'dz',width:250,align:'right',editor:{type:'textbox'}" align="left">地址</th>
+        <th data-options="field:'id',width:100,align:'center'">id</th>
+        <th data-options="field:'gcmc',width:100">工程名称</th>
+        <th data-options="field:'dz',width:100">地址</th>
+        <th data-options="field:'gcys',width:100">工程预算(元)</th>
+        <th data-options="field:'sjcb',width:100">实际成本(元)</th>
     </tr>
     </thead>
 </table>
 
-<div id="tb" style="height:auto">
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">添加</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">删除</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">保存</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">返回</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">GetChanges</a>
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
 </div>
 
+<div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+    <form id="fm" method="post" novalidate style="margin:0;padding:10px 50px">
+        <div style="margin-bottom:10px">
+            <input name="gcmc" class="easyui-textbox" required="true" label="工程名称:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="dz" class="easyui-textbox" required="true" label="地址:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="gcys" class="easyui-textbox" required="true" label="工程预算(元):" style="width:100%">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">确认</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
+</div>
+
+<div id="dlg1" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons1'">
+    <form id="fm1" method="post" novalidate style="margin:0;padding:10px 50px">
+        <div style="margin-bottom:10px">
+<!--            <lable>id</lable>-->
+            <input name="id" readonly class="easyui-textbox" required="true" label="id:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="gcmc" class="easyui-textbox" required="true" label="工程名称:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="dz" class="easyui-textbox" required="true" label="地址:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+<!--            <lable>工程预算(元):</lable>-->
+            <input name="gcys" class="easyui-textbox" required="true" label="工程预算(元):" style="width:100%;">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons1">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser1()" style="width:90px">确认</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">取消</a>
+</div>
+
+
 <script type="text/javascript">
-    var editIndex = undefined;
-    function endEditing(){
-        if (editIndex == undefined){return true}
-        if ($('#dg').datagrid('validateRow', editIndex)){
-            $('#dg').datagrid('endEdit', editIndex);
-            editIndex = undefined;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    function onClickCell(index, field){
-        if (editIndex != index){
-            if (endEditing()){
-                $('#dg').datagrid('selectRow', index)
-                    .datagrid('beginEdit', index);
-                var ed = $('#dg').datagrid('getEditor', {index:index,field:field});
-                if (ed){
-                    ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
-                }
-                editIndex = index;
-            } else {
-                setTimeout(function(){
-                    $('#dg').datagrid('selectRow', editIndex);
-                },0);
-            }
-        }
-    }
-    function onEndEdit(index, row){
-        var ed = $(this).datagrid('getEditor', {
-            index: index,
-            field: 'gcmc'
-        });
-        row.productname = $(ed.target).textbox('getText');
+
+    var url;
+    //打开对话框
+    function newUser(){
+        //打开对话框,清空数据
+        $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加工程');
+        $('#fm').form('clear');
     }
 
-    function append(){
-        if (endEditing()){
-            $('#dg').datagrid('appendRow',{status:''});
-            editIndex = $('#dg').datagrid('getRows').length-1;
-            $('#dg').datagrid('selectRow', editIndex)
-                .datagrid('beginEdit', editIndex);
+    //打开对话框
+    function editUser(){
+        var row = $('#dg').datagrid('getSelected');
+        if (row){
+            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','编辑工程');
+            $('#fm1').form('load',row);
+            // url = 'update_user.php?id='+row.id;
         }
     }
-    function removeit(){
-        if (editIndex == undefined){return}
-        $('#dg').datagrid('cancelEdit', editIndex)
-            .datagrid('deleteRow', editIndex);
-        editIndex = undefined;
+
+    //编辑
+    function saveUser1(){
+        $('#fm1').form('submit',{
+            url: 'http://localhost:8080/engine/updateEngine',
+            success: function(result){
+                console.log(result)
+                var result = eval('(' + result + ')');   // change the JSON string to javascript object
+                if (result.success){
+                    $('#dlg1').dialog('close');        // 关闭添加框
+                    $('#dg').datagrid('reload');    // 刷新列表
+                } else {
+                    $.messager.show({
+                        title: '编辑失败',
+                        msg: result.errorMsg
+                    });
+                }
+            }
+        });
     }
-    function accept(){
-        if (endEditing()){
-            $('#dg').datagrid('acceptChanges');
+
+    //添加
+    function saveUser(){
+        $('#fm').form('submit',{
+            url: 'http://localhost:8080/engine/addEngine',
+            success: function(result){
+                var result = eval('(' + result + ')');   // change the JSON string to javascript object
+                if (result.success){
+                    $('#dlg').dialog('close');        // 关闭添加框
+                    $('#dg').datagrid('reload');    // 刷新列表
+                } else {
+                    $.messager.show({
+                        title: '添加失败',
+                        msg: result.errorMsg
+                    });
+                }
+            }
+        });
+    }
+
+    //删除
+    function destroyUser(){
+        //获取选中行的所有数据
+        var row = $('#dg').datagrid('getSelected');
+        //{id: 2, gcmc: "工程2", dz: "千岛湖镇新安大街111号", delete: null}
+        // console.log(row)
+        if (row){
+            $.messager.confirm('删除','请确认是否删除此数据?',function(r){
+                if (r){
+                    $.get('http://localhost:8080/engine/deleteEngine',{id:row.id},function(result){
+                        if (result.success){
+                            $('#dg').datagrid('reload');    // 获取返回参数，成功则刷新列表
+                        } else {
+                            $.messager.show({    // 失败则弹出信息
+                                title: '删除失败',
+                                msg: result.errorMsg
+                            });
+                        }
+                    },'json');
+                }
+            });
         }
     }
-    function reject(){
-        $('#dg').datagrid('rejectChanges');
-        editIndex = undefined;
-    }
-    function getChanges(){
-        var rows = $('#dg').datagrid('getChanges');
-        alert(rows.length+' rows are changed!');
-    }
+
 </script>
 </body>
 </html>

@@ -1,12 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:formatter="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>考勤信息</title>
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+    <script type="text/javascript" src="/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <style>
+        .body{
+            padding: 0;
+            margin: 0 0;
+        }
+    </style>
 </head>
 <body>
 
-考勤信息
+<table id="dg" class="easyui-datagrid" style="width:100%;height:600px"
+       url="http://localhost:8080/hrm/selectAttendance",
+       toolbar="#toolbar" pagination="true"
+       rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+    <tr>
+        <th data-options="field:'id',width:100,align:'center'">id</th>
+        <th data-options="field:'gcmc',width:100">工程名称</th>
+        <th data-options="field:'xm',width:100">姓名</th>
+        <th data-options="field:'rq',width:100" formatter="formatSex">考勤日期</th>
+        <th data-options="field:'bz',width:100">备注</th>
+    </tr>
+    </thead>
+</table>
 
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
+</div>
+
+<div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+    <form id="fm" method="post" novalidate style="margin:0;padding:10px 50px">
+        <div style="margin-bottom:10px">
+            <input name="xm" class="easyui-textbox" required="true" label="姓名:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="nl" class="easyui-textbox" required="true" label="年龄:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="xb" class="easyui-combobox"  required="true" label="性别:" data-options="valueField: 'label',textField: 'value',data: [{label: '0',value: '男'},{label: '1',value: '女'}]" />
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:'http://localhost:8080/job/selectJob'" label="岗位:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="sfzh" class="easyui-textbox" required="true" label="身份证号:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="yhzh" class="easyui-textbox" required="true" label="银行账号:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="dh" class="easyui-textbox" required="true" label="电话:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="bz" class="easyui-textbox" label="备注:" style="width:100%">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">确认</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
+</div>
+
+<div id="dlg1" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons1'">
+    <form id="fm1" method="post" novalidate style="margin:0;padding:10px 50px">
+        <div style="margin-bottom:10px">
+            <input name="id" readonly class="easyui-textbox" required="true" label="id:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="xm" class="easyui-textbox" required="true" label="姓名:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="nl" class="easyui-textbox" required="true" label="年龄:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="xb" class="easyui-combobox"  required="true" label="性别:" data-options="valueField: 'label',textField: 'value',data: [{label: '0',value: '男'},{label: '1',value: '女'}]" />
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:'http://localhost:8080/job/selectJob'" label="岗位:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="sfzh" class="easyui-textbox" required="true" label="身份证号:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="yhzh" class="easyui-textbox" required="true" label="银行账号:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="dh" class="easyui-textbox" required="true" label="电话:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="bz" class="easyui-textbox" label="备注:" style="width:100%">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons1">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser1()" style="width:90px">确认</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">取消</a>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+    });
+
+    var url;
+    //打开对话框
+    function newUser(){
+        //打开对话框,清空数据
+        $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加员工');
+        $('#fm').form('clear');
+    }
+
+    //打开对话框
+    function editUser(){
+        var row = $('#dg').datagrid('getSelected');
+        if (row){
+            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','编辑员工');
+            $('#fm1').form('load',row);
+            // url = 'update_user.php?id='+row.id;
+        }
+    }
+
+    //编辑
+    function saveUser1(){
+        $('#fm1').form('submit',{
+            url: 'http://localhost:8080/hrm/updateHrm',
+            success: function(result){
+                var result = eval('(' + result + ')');   // change the JSON string to javascript object
+                if (result.success){
+                    $('#dlg1').dialog('close');        // 关闭添加框
+                    $('#dg').datagrid('reload');    // 刷新列表
+                } else {
+                    $.messager.show({
+                        title: '编辑失败',
+                        msg: result.errorMsg
+                    });
+                }
+            }
+        });
+    }
+
+    //添加
+    function saveUser(){
+        $('#fm').form('submit',{
+            url: 'http://localhost:8080/hrm/addHrm',
+            success: function(result){
+                var result = eval('(' + result + ')');   // change the JSON string to javascript object
+                if (result.success){
+                    $('#dlg').dialog('close');        // 关闭添加框
+                    $('#dg').datagrid('reload');    // 刷新列表
+                } else {
+                    $.messager.show({
+                        title: '添加失败',
+                        msg: result.errorMsg
+                    });
+                }
+            }
+        });
+    }
+
+    //删除
+    function destroyUser(){
+        //获取选中行的所有数据
+        var row = $('#dg').datagrid('getSelected');
+        //{id: 2, gcmc: "工程2", dz: "千岛湖镇新安大街111号", delete: null}
+        // console.log(row)
+        if (row){
+            $.messager.confirm('删除','请确认是否删除此数据?',function(r){
+                if (r){
+                    $.get('http://localhost:8080/hrm/deleteHrm',{id:row.id},function(result){
+                        if (result.success){
+                            $('#dg').datagrid('reload');    // 获取返回参数，成功则刷新列表
+                        } else {
+                            $.messager.show({    // 失败则弹出信息
+                                title: '删除失败',
+                                msg: result.errorMsg
+                            });
+                        }
+                    },'json');
+                }
+            });
+        }
+    }
+
+
+    //处理下拉框岗位
+    var result = [];
+    function formatGw(val, row) {
+        var gw = '';
+        $.ajax({
+            url: "http://localhost:8080/job/selectJobBox?id="+val,
+            type: 'get',
+            contentType: 'application/json',
+            dataType: 'json',
+            async: false, // 同步
+            success: function (result) {
+                gw = result['gw'];
+            },
+            error: function (result) {
+                alert("请重新加载。。。")
+            }
+        });
+        return gw;
+    }
+
+    //处理下拉框性别
+    function formatSex(val){
+        if (val == '0'){
+            return '男'
+        }else {
+            return '女'
+        }
+    }
+
+</script>
 </body>
 </html>

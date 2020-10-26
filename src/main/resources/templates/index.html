@@ -16,14 +16,16 @@
 <div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
     <div style="line-height: 40px;font-size: 25px;"><string>工程项目管理系统</string></div>
 </div>
+
 <!--左侧菜单栏-->
 <div data-options="region:'west',split:true,title:'菜单栏'" style="width:225px;padding:10px;">
     <div id="sm" class="easyui-sidemenu" data-options="onSelect:addTab,data:data"></div>
 </div>
+
 <!--    主界面-->
 <div data-options="region:'center',title:'信息中心'">
     <div id="tt" class="easyui-tabs" style="width:100%;height:100%;">
-        <div title="工程名称" style="padding:0px;display:none;">
+        <div title="工程信息" style="padding:0px;display:none;">
             <iframe scrolling="auto" frameborder="0"  src="http://localhost:8080/home/engine" style="width:100%;height:100%;"></iframe>
         </div>
     </div>
@@ -31,8 +33,7 @@
 
 
 <script type="text/javascript">
-
-    // 初始化
+    // 初始化目录
     var data = [];
     $(document).ready(function(){
         $.ajax({url:"http://localhost:8080/home/menu",success:function(result){
@@ -41,7 +42,6 @@
                     data:result
                 });
             }});
-
     });
 
     // var data = [{
@@ -80,6 +80,7 @@
     // }
     // ];
 
+    //目录框
     function toggle(){
         var opts = $('#sm').sidemenu('options');
         $('#sm').sidemenu(opts.collapsed ? 'expand' : 'collapse');
@@ -89,14 +90,14 @@
         })
     }
 
-
-
+    //添加选项卡
     function addTab(object){
-        console.log(title)
         var title = object['text'];
         var url = object['url'];
+        console.log($('#tt').tabs('exists', title))
         if ($('#tt').tabs('exists', title)){
             $('#tt').tabs('select', title);
+
         } else {
             var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
             $('#tt').tabs('add',{
@@ -106,6 +107,23 @@
             });
         }
     }
+
+    // 更新选择的面板的新标题和内容
+    $('#tt').tabs({
+        border:false,
+        onSelect:function(title){
+            var tab = $('#tt').tabs('getSelected');  // 获取选择的面板
+            console.log(tab)
+            $('#tt').tabs('update', {
+                tab: tab,
+                options: {
+                }
+            });
+            // alert(title+' is selected');
+        }
+    });
+    
+
 
 
 </script>

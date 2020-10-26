@@ -6,7 +6,7 @@ public class Menu {
     private Integer id;
     private String text;
     private String iconCls;
-    private String statue;
+    private String state;
     private Integer fid;
     private List<Menu> children;
     private String url;
@@ -35,12 +35,12 @@ public class Menu {
         this.iconCls = iconCls;
     }
 
-    public String getStatue() {
-        return statue;
+    public String getState() {
+        return state;
     }
 
-    public void setStatue(String statue) {
-        this.statue = statue;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Integer getFid() {
@@ -73,7 +73,7 @@ public class Menu {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", iconCls='" + iconCls + '\'' +
-                ", statue='" + statue + '\'' +
+                ", state='" + state + '\'' +
                 ", fid=" + fid +
                 ", children=" + children +
                 ", url='" + url + '\'' +
