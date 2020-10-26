@@ -25,6 +25,7 @@ public class loginConfig {
 
     @Bean
     public CorsFilter corsFilter() {
+        //test
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig()); //注册
         return new CorsFilter(source);
