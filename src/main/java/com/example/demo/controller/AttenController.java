@@ -12,33 +12,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("att")
-public class AttendanceController {
+public class AttenController {
 
     @Resource
     IAttenService iAttenService;
 
     //增加考勤
+    @RequestMapping("/addAttendance")
     public ErrorMessage addAttendance(){
-
         return null;
     }
 
     //删除考勤
+    @RequestMapping("/deleteAttendance")
     public ErrorMessage deleteAttendance(){
-
         return null;
     }
 
     //修改考勤
+    @RequestMapping("/updateAttendance")
     public ErrorMessage updateAttendance(){
-
         return null;
     }
 
     //查询考勤
+    @RequestMapping("/selectAttendance")
     public List<Attendance> selectAttendance(){
-        List<Attendance> attendances = iAttenService.selectAttendance();
-        return attendances;
+        return  iAttenService.selectAttendance();
     }
-
 }

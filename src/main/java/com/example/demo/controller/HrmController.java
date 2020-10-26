@@ -76,7 +76,6 @@ public class HrmController {
     @ResponseBody
     public List<Hrmresource> selectHrm(){
         ErrorMessage errorMessage = new ErrorMessage();
-        List<Hrmresource> hrmresources = iHrmService.selectHrm();
-        return hrmresources;
+        return iHrmService.selectHrm();
     }
 }

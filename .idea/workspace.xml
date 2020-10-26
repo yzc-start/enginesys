@@ -1,52 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2210f326-6536-46e9-b612-a554255079d2" name="Default Changelist" comment="version1.0">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AttendanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/HrmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/JobController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/HrmMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/HrmMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/JobMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/JobMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Attendance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Hrmresource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Job.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/IAttenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/IHrmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/IJobService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IAttenServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IHrmServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IJobServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/job.html" afterDir="false" />
+    <list default="true" id="2210f326-6536-46e9-b612-a554255079d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AttenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/EngineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/EngineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/EngineMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/EngineMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/EngineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/EngineMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/ErrorMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IMenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IMenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/HrmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/HrmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/mapper/AttenMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/IAttenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/IAttenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IAttenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ServiceImpl/IAttenServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/attendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/attendance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/engine.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/engine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hrmresource.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hrmresource.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/EngineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/EngineController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/Engine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/Engine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/ErrorMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/ErrorMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/ServiceImpl/IMenuServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/ServiceImpl/IMenuServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/EngineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/EngineMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/attendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/attendance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/engine.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/engine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/hrmresource.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hrmresource.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +150,7 @@
       <workItem from="1603523994232" duration="600000" />
       <workItem from="1603524993969" duration="21965000" />
       <workItem from="1603596746405" duration="25977000" />
-      <workItem from="1603707095854" duration="1304000" />
+      <workItem from="1603707095854" duration="6509000" />
     </task>
     <task id="LOCAL-00001" summary="version1.0">
       <created>1603201166073</created>
@@ -193,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603201166073</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="version2.0">
+      <created>1603709017416</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603709017416</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +190,7 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="version1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version1.0" />
+    <MESSAGE value="version2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="version2.0" />
   </component>
 </project>

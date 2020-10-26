@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestMapping("engine")
 public class EngineController {
 
-    @Autowired
+    @Resource
     IEngineService iEngineService;
 
     //添加工程
@@ -88,8 +89,8 @@ public class EngineController {
 
     //查询工程
     @RequestMapping("/selectEngine")
+    @ResponseBody
     public List<Engine> selectEngine(){
-        ArrayList<Engine> engines = iEngineService.selectEngine();
-        return engines;
+        return iEngineService.selectEngine();
     }
 }

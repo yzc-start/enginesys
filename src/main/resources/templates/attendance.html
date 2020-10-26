@@ -49,7 +49,7 @@
             <input name="xb" class="easyui-combobox"  required="true" label="性别:" data-options="valueField: 'label',textField: 'value',data: [{label: '0',value: '男'},{label: '1',value: '女'}]" />
         </div>
         <div style="margin-bottom:10px">
-            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:'http://localhost:8080/job/selectJob'" label="岗位:" style="width:100%">
+            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:''" label="岗位:" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="sfzh" class="easyui-textbox" required="true" label="身份证号:" style="width:100%">
@@ -85,7 +85,7 @@
             <input name="xb" class="easyui-combobox"  required="true" label="性别:" data-options="valueField: 'label',textField: 'value',data: [{label: '0',value: '男'},{label: '1',value: '女'}]" />
         </div>
         <div style="margin-bottom:10px">
-            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:'http://localhost:8080/job/selectJob'" label="岗位:" style="width:100%">
+            <input name="gw" class="easyui-combobox" required="true"  data-options="valueField:'id',textField:'gw',url:''" label="岗位:" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="sfzh" class="easyui-textbox" required="true" label="身份证号:" style="width:100%">
@@ -134,7 +134,7 @@
     //编辑
     function saveUser1(){
         $('#fm1').form('submit',{
-            url: 'http://localhost:8080/hrm/updateHrm',
+            url: '',
             success: function(result){
                 var result = eval('(' + result + ')');   // change the JSON string to javascript object
                 if (result.success){
@@ -153,7 +153,7 @@
     //添加
     function saveUser(){
         $('#fm').form('submit',{
-            url: 'http://localhost:8080/hrm/addHrm',
+            url: '',
             success: function(result){
                 var result = eval('(' + result + ')');   // change the JSON string to javascript object
                 if (result.success){
@@ -178,7 +178,7 @@
         if (row){
             $.messager.confirm('删除','请确认是否删除此数据?',function(r){
                 if (r){
-                    $.get('http://localhost:8080/hrm/deleteHrm',{id:row.id},function(result){
+                    $.get('',{id:row.id},function(result){
                         if (result.success){
                             $('#dg').datagrid('reload');    // 获取返回参数，成功则刷新列表
                         } else {

@@ -19,5 +19,5 @@ public interface AttenMapper {
     int updateAttendance(Attendance attendance);
 
     //查询考勤
-    ArrayList<Engine> selectAttendance();
+    ArrayList<Attendance> selectAttendance();
 }
