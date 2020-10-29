@@ -93,4 +93,11 @@ public class EngineController {
     public List<Engine> selectEngine(){
         return iEngineService.selectEngine();
     }
+
+    //查询工程
+    @RequestMapping("/selectEngineBox")
+    @ResponseBody
+    public Engine selectEngineBox(Integer id){
+        return iEngineService.selectEngineBox(id);
+    }
 }

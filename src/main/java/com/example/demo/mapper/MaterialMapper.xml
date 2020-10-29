@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MaterialMapper">
+
+    <!--添加材料-->
+    <insert id="addMaterial" parameterType="com.example.demo.model.Material">
+        insert into material (gcmc,clmc,sl,dj,hj,isdelete) values(#{gcmc},#{clmc},#{sl},#{dj},#{hj},0)
+    </insert>
+
+    <!--删除材料-->
+    <update id="deleteMaterial" parameterType="int">
+        update material set isdelete = 1 where id = #{id}
+    </update>
+
+    <!--修改材料-->
+    <update id="updateMaterial"  parameterType="com.example.demo.model.Material">
+        update material set gcmc = #{gcmc},clmc = #{clmc},sl = #{sl},dj = #{dj},hj = #{hj} where id = #{id}
+    </update>
+
+    <!--查询材料-->
+    <select id="selectMaterial" resultType="com.example.demo.model.Material">
+        select * from material where isdelete = 0
+    </select>
+
+
+
+
+
+
+</mapper>

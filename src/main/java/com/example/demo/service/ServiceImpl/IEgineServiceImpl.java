@@ -43,4 +43,10 @@ public class IEgineServiceImpl implements IEngineService {
         ArrayList<Engine> engines = engineMapper.selectEngine();
         return engines;
     }
+
+    //查询回显
+    @Override
+    public Engine selectEngineBox(Integer id) {
+        return engineMapper.selectEngineBox(id);
+    }
 }

@@ -23,5 +23,10 @@
         select * from engine where isdelete = 0
     </select>
 
+    <!--    查询工程-->
+    <select id="selectEngineBox" parameterType="int" resultType="com.example.demo.model.Engine">
+        select * from engine where id = #{id}
+    </select>
+
 
 </mapper>

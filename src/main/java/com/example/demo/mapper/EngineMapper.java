@@ -19,4 +19,7 @@ public interface EngineMapper {
 
     //查询工程
     ArrayList<Engine> selectEngine();
+
+    //查询回显
+    Engine selectEngineBox(Integer id);
 }
